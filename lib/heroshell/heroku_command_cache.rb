@@ -12,6 +12,7 @@ class HeroShell::HerokuCommandsCache
         def self.read_topic(topic) 
             lines = `heroku help #{topic}`.split("\n")
             lines
+            .drop_while { |line| !line.start_with? " -a, --app" }
             .drop_while { |line| !line.start_with? "heroku #{topic} commands" }
             .drop(1)
             .select { |l| l[1] != ' ' }
