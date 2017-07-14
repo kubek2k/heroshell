@@ -30,6 +30,10 @@ to switch to other application, use `switch` command:
 (plan3-sample-app2)> 
 ```
 
+## History and autocompletion
+
+Yes - it has those two :point_up: :D
+
 ## How it works?
  * Its a wrapper on heroku CLI - simple as that
  * Autocompletion of commands is done by shamlessly parsing `heroku help` command
