@@ -2,16 +2,17 @@ require "readline"
 require "rainbow"
 
 class HeroShell
-    def initialize(herokuApp)
+    def initialize(herokuApp, forceCommandsSync)
         unless herokuApp
             puts "heroshell <herokuApp>"
             exit 1
         end
+        @forceCommandSync = forceCommandsSync
         @app = herokuApp
     end
 
     def init_completion()
-        autocompleted_commands = HerokuCommandsCache.get_commands()
+        autocompleted_commands = HerokuCommandsCache.get_commands(@forceCommandSync)
         Readline.completion_append_character = " "
         Readline.completer_word_break_characters = ""
         Readline.completion_proc = proc { |s| 
