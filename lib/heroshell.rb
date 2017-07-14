@@ -1,7 +1,6 @@
 require "readline"
 require "rainbow"
 
-
 class HeroShell
     def initialize(herokuApp)
         unless herokuApp
@@ -25,7 +24,7 @@ class HeroShell
         while buf = Readline.readline("(#{Rainbow(@app).red})> ", false)
             buf = buf.strip()
             if buf.empty?
-                next 
+                next
             end
             if buf.start_with?("switch ")
                 switchTo = buf.split(" ")[1] 
@@ -36,8 +35,8 @@ class HeroShell
                     $stderr.puts "use: \"switch <herokuApp>\" to switch to other app"
                 end
             else
-                command = "heroku #{buf} -a #{@app}"
-                res = system(command)
+                command, arguments = buf.split(/\s+/, 2)
+                res = system("heroku #{command} -a #{@app} #{arguments}")
                 if res 
                     Readline::HISTORY.push(buf)
                 else
