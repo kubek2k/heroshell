@@ -1,4 +1,19 @@
 #!/usr/bin/env ruby
 
 require 'heroshell'
-HeroShell.new(ARGV[0]).run
+require 'optparse'
+
+options = {
+    :sync => false
+}
+parser = OptionParser.new do |parser|
+    parser.on('-s', '--sync', 'Force sync of available commands') do ||
+        options[:sync] = true
+    end
+    parser.on('-h', '--help', 'Show help') do ||
+        puts parser
+        exit 0
+    end
+end
+args = parser.parse!
+HeroShell.new(args[0], options[:sync]).run

@@ -26,17 +26,17 @@ class HeroShell::HerokuCommandsCache
         }
     end
 
-    def self.get_commands()
+    def self.get_commands(forceSync)
         def self.read_topics_file()
             IO.read(@@TOPICS_FILE).split("\n")
         end
 
-        if File.exist? @@TOPICS_FILE
-            read_topics_file()
-        else
-            puts "No commands file found - syncing.."
+        if !File.exist? @@TOPICS_FILE || forceSync
+            puts "No commands file found, or sync forced - syncing..."
             sync()
             puts "Syncing done."
+            read_topics_file()
+        else
             read_topics_file()
         end
     end
