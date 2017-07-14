@@ -1,7 +1,6 @@
 require "readline"
 require "rainbow"
-
-herokuApp = ARGV.first
+require "./heroku_command_cache.rb"
 
 class HeroShell
 
