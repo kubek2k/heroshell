@@ -7,6 +7,7 @@ options = {
     :sync => false
 }
 parser = OptionParser.new do |parser|
+    parser.banner = 'Usage: heroshell [options] <herokuApp>'
     parser.on('-s', '--sync', 'Force sync of available commands') do ||
         options[:sync] = true
     end
@@ -16,4 +17,8 @@ parser = OptionParser.new do |parser|
     end
 end
 args = parser.parse!
+unless args.length > 0
+    puts parser
+    exit 1
+end
 HeroShell.new(args[0], options[:sync]).run
