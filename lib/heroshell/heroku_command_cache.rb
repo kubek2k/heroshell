@@ -1,4 +1,4 @@
-class HerokuCommandsCache
+class HeroShell::HerokuCommandsCache
     @@TOPICS_FILE = "#{ENV['HOME']}/.heroku-commands.list"
 
     def self.sync()
@@ -25,7 +25,7 @@ class HerokuCommandsCache
         }
     end
 
-    def self.get_topics()
+    def self.get_commands()
         def self.read_topics_file()
             IO.read(@@TOPICS_FILE).split("\n")
         end

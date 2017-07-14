@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
     s.description = 'Heroku command shell'
     s.authors     = ['Jakub Janczak (@kubek2k)']
     s.email       = 'kubek2k@gmail.com'
-    s.files       = ['lib/heroshell.rb']
+    s.files       = ['lib/heroshell.rb', 'lib/heroshell/heroku_command_cache.rb']
     s.executables << 'heroshell'
     s.homepage    = 'http://rubygems.org/gems/heroshell'
     s.license       = 'MIT'
