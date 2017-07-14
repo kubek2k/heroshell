@@ -8,12 +8,12 @@ class HeroShell
             exit 1
         end
         @app = herokuApp
-
     end
 
     def init_completion()
         autocompleted_commands = HerokuCommandsCache.get_commands()
         Readline.completion_append_character = " "
+        Readline.completer_word_break_characters = ""
         Readline.completion_proc = proc { |s| 
             autocompleted_commands.grep(/^#{Regexp.escape(s)}/)
         }
