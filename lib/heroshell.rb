@@ -3,10 +3,6 @@ require "rainbow"
 
 class HeroShell
     def initialize(herokuApp, forceCommandsSync)
-        unless herokuApp
-            puts "heroshell <herokuApp>"
-            exit 1
-        end
         @forceCommandSync = forceCommandsSync
         @app = herokuApp
     end
