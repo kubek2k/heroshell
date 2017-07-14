@@ -1,19 +1,27 @@
 require "readline"
 require "rainbow"
 
-herokuApp = ARGV.first
 
 class HeroShell
-
     def initialize(herokuApp)
         unless herokuApp
             puts "switcher <herokuApp>"
             exit 1
         end
         @app = herokuApp
+
+    end
+
+    def init_completion()
+        autocompleted_commands = HerokuCommandsCache.get_commands()
+        Readline.completion_append_character = " "
+        Readline.completion_proc = proc { |s| 
+            autocompleted_commands.grep(/^#{Regexp.escape(s)}/)
+        }
     end
 
     def run()
+        init_completion()
         while buf = Readline.readline("(#{Rainbow(@app).red})> ", false)
             buf = buf.strip()
             if buf.empty?
@@ -39,3 +47,5 @@ class HeroShell
         end
     end
 end
+
+require "heroshell/heroku_command_cache"
