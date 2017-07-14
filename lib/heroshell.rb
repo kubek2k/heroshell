@@ -5,7 +5,7 @@ require "rainbow"
 class HeroShell
     def initialize(herokuApp)
         unless herokuApp
-            puts "switcher <herokuApp>"
+            puts "heroshell <herokuApp>"
             exit 1
         end
         @app = herokuApp
@@ -45,6 +45,7 @@ class HeroShell
                 end
             end
         end
+        puts ''
     end
 end
 
