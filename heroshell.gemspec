@@ -10,4 +10,6 @@ Gem::Specification.new do |s|
     s.executables << 'heroshell'
     s.homepage    = 'http://rubygems.org/gems/heroshell'
     s.license       = 'MIT'
+
+    s.add_runtime_dependency 'rainbow', '2.2.2'
 end
