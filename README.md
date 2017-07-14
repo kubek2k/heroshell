@@ -17,11 +17,6 @@ NEWSROOMS_NO: ap,bt,vg
 
 (plan3-sample-app1)> releases
 === plan3-sample-app1 Releases - Current: v8
-v8  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/06 16:12:49 +0200
-v7  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/04 16:56:32 +0200
-v6  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/03 15:44:48 +0200
-v5  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/03 15:23:23 +0200
-v4  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/03 15:22:57 +0200
 v3  Set NEWSROOMS_NO config vars   jakub.janczak@schibsted.com   2017/07/03 15:22:29 +0200
 v2  Enable Logplex                 jakub.janczak@schibsted.com   2017/07/03 14:16:27 +0200
 v1  Initial release                plan3-labs@herokumanager.com  2017/07/03 14:16:27 +0200
