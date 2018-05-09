@@ -3,6 +3,16 @@
 require 'heroshell'
 require 'optparse'
 
+def get_app_from_heroku_remote()
+    url = `git remote get-url heroku` 
+    if url 
+        return url.split('/').last.sub(/\.git$/, '').chop
+    else
+        $stderr.puts "No app given in command line and no usable heroku git remote"
+        exit 1
+    end
+end 
+
 options = {
     :sync => false
 }
@@ -18,7 +28,8 @@ parser = OptionParser.new do |parser|
 end
 args = parser.parse!
 unless args.length > 0
-    puts parser
-    exit 1
+    app = get_app_from_heroku_remote
+else
+    app = args[0]
 end
-HeroShell.new(args[0], options[:sync]).run
+HeroShell.new(app, options[:sync]).run
