@@ -32,12 +32,16 @@ class HeroShell
                     $stderr.puts "use: \"switch <herokuApp>\" to switch to other app"
                 end
             else
-                command, arguments = buf.split(/\s+/, 2)
-                res = system("heroku #{command} -a #{@app} #{arguments}")
-                if res 
-                    Readline::HISTORY.push(buf)
-                else
-                    $stderr.puts "Command \"#{command}\" returned non-zero status."
+                begin
+                    command, arguments = buf.split(/\s+/, 2)
+                    res = system("heroku #{command} -a #{@app} #{arguments}")
+                    if res 
+                        Readline::HISTORY.push(buf)
+                    else
+                        $stderr.puts "Command \"#{command}\" returned non-zero status."
+                    end
+                rescue Interrupt => e
+                    $stderr.puts "Command was interrupted, continueing"
                 end
             end
         end
