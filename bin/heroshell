@@ -30,6 +30,11 @@ args = parser.parse!
 unless args.length > 0
     app = get_app_from_heroku_remote
 else
-    app = args[0]
+    if args[0].length > 0
+        app = args[0]
+    else 
+        $stderr.puts "App name given is empty"
+        exit 1
+    end
 end
 HeroShell.new(app, options[:sync]).run

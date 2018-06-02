@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
     s.name        = 'heroshell'
-    s.version     = '1.1.0'
-    s.date        = '2018-05-09'
+    s.version     = '1.1.1'
+    s.date        = '2018-06-02'
     s.summary     = 'Heroku command shell'
     s.description = 'Heroku command shell'
     s.authors     = ['Jakub Janczak (@kubek2k)']
