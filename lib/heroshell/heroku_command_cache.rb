@@ -3,7 +3,7 @@ class HeroShell::HerokuCommandsCache
 
     def self.sync()
         def self.read_help_topics()
-            lines = `heroku help`.split("\n").drop(4)
+            lines = `heroku help`.split("\n").drop(9)
             lines
             .select { |l| l[1] != ' ' }
             .collect { |l| l.strip().split(' ')[0] }
