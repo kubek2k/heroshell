@@ -3,26 +3,28 @@ class HeroShell::HerokuCommandsCache
 
     def self.sync()
         def self.read_help_topics()
-            lines = `heroku help`.split("\n").drop(9)
-            lines
-            .select { |l| l[1] != ' ' }
-            .collect { |l| l.strip().split(' ')[0] }
+            `heroku help`
+                .split("\n")
+                .drop_while { |line| !line.start_with? "COMMANDS" }
+                .drop(1)
+                .select { |l| l[3] != ' '}
+                .collect { |l| l.split(' ')[0] }
         end
 
         def self.read_topic(topic) 
-            lines = `heroku help #{topic}`.split("\n")
-            lines
-            .drop_while { |line| !line.start_with? " -a, --app" }
-            .drop_while { |line| !line.start_with? "heroku #{topic} commands" }
-            .drop(1)
-            .select { |l| l[1] != ' ' }
-            .collect { |l| l.strip().split(' ')[0] }
+            `heroku help #{topic}`
+                .split("\n")
+                .drop_while { |line| !line.start_with? "COMMANDS" }
+                .drop(1)
+                .select { |l| l[3] != ' '}
+                .collect { |l| l.split(' ')[0] }
         end
 
         File.open(@@TOPICS_FILE, "w+") { |f| 
-            f.write(read_help_topics()
-                    .flat_map{ |t| read_topic(t) }
-                    .join("\n"))
+            topics = read_help_topics()
+                .flat_map{ |t| read_topic(t) + [t] }
+                .join("\n")
+            f.write(topics)
         }
     end
 
