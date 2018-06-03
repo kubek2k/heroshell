@@ -31,7 +31,7 @@ class HeroShell::HerokuCommandsCache
             IO.read(@@TOPICS_FILE).split("\n")
         end
 
-        if !File.exist? @@TOPICS_FILE || forceSync
+        if !File.exist? @@TOPICS_FILE or forceSync
             puts "No commands file found, or sync forced - syncing..."
             sync()
             puts "Syncing done."
